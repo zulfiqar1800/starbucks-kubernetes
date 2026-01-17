@@ -2,8 +2,8 @@
 
 eksctl create cluster \
   --name=Cloudaseem \
-  --region=ap-south-1 \
-  --zones=ap-south-1a,ap-south-1b \
+  --region=us-east-1 \
+  --zones=us-east-1a,us-east-1b \
   --version=1.30 \
   --without-nodegroup
 
@@ -13,7 +13,7 @@ eksctl create cluster \
 (b) Associate IAM OIDC Provider
 
 eksctl utils associate-iam-oidc-provider \
-  --region ap-south-1 \
+  --region us-east-1 \
   --cluster Cloudaseem \
   --approve
 
@@ -21,7 +21,7 @@ c. node group
 
 eksctl create nodegroup \
   --cluster=Cloudaseem \
-  --region=ap-south-1 \
+  --region=us-east-1 \
   --name=node2 \
   --node-type=t3.medium \
   --nodes=3 \
