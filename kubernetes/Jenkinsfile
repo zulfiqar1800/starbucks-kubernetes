@@ -54,20 +54,20 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t starbucks ."
-                       sh "docker tag starbucks rasheed1800/hotstar:latest "
-                       sh "docker push rasheed1800/hotstar:latest "
+                       sh "docker tag starbucks rasheed1800/starbucks:latest "
+                       sh "docker push rasheed1800/starbucks:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image rasheed1800/hotstar:latest > trivyimage.txt" 
+                sh "trivy image rasheed1800/starbucks:latest > trivyimage.txt" 
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name hotstar -p 3000:3000 rasheed1800/hotstar:latest'
+                sh 'docker run -d --name hotstar -p 3000:3000 rasheed1800/starbucks:latest'
             }
         }
 
@@ -100,6 +100,7 @@ pipeline{
     }
 
 }
+
 
 
 
